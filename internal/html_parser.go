@@ -9,7 +9,7 @@ import (
 func getHeadingFromHtml(html string) string {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
 	if err != nil {
-			return ""
+		return ""
 	}
 
 	heading := strings.TrimSpace(doc.Find("h1").First().Text())
@@ -20,7 +20,6 @@ func getHeadingFromHtml(html string) string {
 
 	return heading
 }
-
 
 func getFirstParagraphFromHtml(html string) string {
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))

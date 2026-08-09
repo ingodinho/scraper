@@ -91,7 +91,7 @@ func TestExtractPageData(t *testing.T) {
 
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := extractPageData(tc.inputBody, tc.inputURL)
+			actual := ExtractPageData(tc.inputBody, tc.inputURL)
 			if !reflect.DeepEqual(tc.expected, actual) {
 				t.Errorf("Test: %v - Expected: %v - Actual: %v", tc.name, tc.expected, actual)
 			}

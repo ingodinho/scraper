@@ -16,7 +16,7 @@ type PageData struct {
 	ImageURLs      []string
 }
 
-func extractPageData(html, pageUrl string) PageData {
+func ExtractPageData(html, pageUrl string) PageData {
 	url, err := url.Parse(pageUrl)
 	if err != nil {
 		return PageData{}

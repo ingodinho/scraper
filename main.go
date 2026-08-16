@@ -22,12 +22,13 @@ func main() {
 	baseURL := args[0]
 	fmt.Printf("starting crawl of: %v\n", baseURL)
 
-	html, err := internal.GetHTML(baseURL)
+	pages := map[string]int {}
+	err := internal.CrawlPage(baseURL, baseURL, pages)
 	if err != nil {
 		fmt.Printf("error: %v", err)
 		os.Exit(1)
 	}
 
-	fmt.Println(html)
+	fmt.Println(pages)
 	os.Exit(0)
 }

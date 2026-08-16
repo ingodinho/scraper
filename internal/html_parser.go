@@ -83,12 +83,20 @@ func getURLsFromHTML(htmlBody string, baseURL *url.URL) ([]string, error) {
 
 	doc.Find("a[href]").Each(func(_ int, s *goquery.Selection) {
 		href, _ := s.Attr("href")
+		href = strings.TrimSpace(href)
 
-		if strings.HasPrefix(href, "/") {
-			href = baseURL.String() + href
+		ref, err := url.Parse(href)
+		if err != nil {
+			return
 		}
 
-		result = append(result, href)
+		abs := baseURL.ResolveReference(ref)
+		if abs.Scheme != "http" && abs.Scheme != "https"{
+			return
+		}
+
+		abs.Fragment = ""
+		result = append(result, abs.String())
 	})
 
 	return result, nil
